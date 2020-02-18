@@ -1,4 +1,5 @@
 const getButton = document.getElementById('getBtn');
+const postButton = document.getElementById('postBtn')
 
 const sendHttpRequest = (method, url, data) => {
     return fetch(url, {
@@ -29,6 +30,27 @@ const getData = () => {
     });
 };
 
+const sendData = () => {
+    sendHttpRequest('POST', 'http://localhost:3000/graduates', {
+        name: document.getElementById('name').value,
+        gradYearMonth: document.getElementById('year').value,
+        jobTitle: document.getElementById('jobTitle').value,
+        gitHub: document.getElementById('github').value
+
+
+
+    })
+    .then(responseData => {
+        console.log(responseData)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
 if(getButton) {
 getButton.addEventListener('click', getData);
+}
+if(postButton) {
+    postButton.addEventListener('click', sendData);
 }
